@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
+
 class Transaction {
-  late String id;
-  late String title;
-  late double amount;
-  late DateTime date;
+  late final String id;
+  late final String title;
+  late final double amount;
+  late final DateTime date;
 
   Transaction(
       {required this.id,
