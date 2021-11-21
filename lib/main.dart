@@ -1,5 +1,6 @@
 import 'package:design_widgets/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -75,7 +76,7 @@ class MyHomePage extends StatelessWidget {
                       children: <Widget>[
                         Text(tx.title),
                         Text(
-                          tx.date.toString(),
+                          DateFormat().format(tx.date),
                         )
                       ],
                     )
