@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,10 +19,10 @@ class Chart extends StatelessWidget {
       var totalSum = 0.0;
 
       for (var i = 0; i < recentTransactions.length; i++) {
-        if (recentTransactions[i].date.day == weekDay.day &&
-            recentTransactions[i].date.month == weekDay.month &&
-            recentTransactions[i].date.year == weekDay.year) {
-          totalSum += recentTransactions[i].amount;
+        if (recentTransactions[i].date?.day == weekDay.day &&
+            recentTransactions[i].date?.month == weekDay.month &&
+            recentTransactions[i].date?.year == weekDay.year) {
+          totalSum += recentTransactions[i].amount!;
         }
       }
 
@@ -33,7 +35,7 @@ class Chart extends StatelessWidget {
 
   double get totalSpending {
     return groupedTransactionValues.fold(0.0, (sum, item) {
-      return sum + item['amount'];
+      return sum + (item['amount'] as double);
     });
   }
 
@@ -50,8 +52,8 @@ class Chart extends StatelessWidget {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                data['day'],
-                data['amount'],
+                data['day'] as String,
+                data['amount'] as double,
                 totalSpending == 0.0
                     ? 0.0
                     : (data['amount'] as double) / totalSpending,
